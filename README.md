@@ -1,2 +1,2 @@
 # cookie-clicker
-Website to play cookie clicker. Utilizes cookies to store your score.
+Website to play cookie clicker. Utilizes express for backend, Oauth for login, and mySQL for score storage.
