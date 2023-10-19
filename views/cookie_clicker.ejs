@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <title>Cookie Clicker</title>
+</head>
+<body>
+    <div class="content container">
+    <h1>Cookie Clicker</h1>
+    <p id="clicks">You have clicked <%=cookie_count%> times!</p>
+    <div class="cookie-wrapper" id="cookie-wrapper">
+        <svg viewBox="0 0 90 90">
+            <circle id="cookie-outline" cx="45" cy="45" r="10" stroke="#806a41" fill="#bda45e"/>
+            <circle id="chip" cx="40" cy="40" r="0.5" stroke="#4f3f2f" fill="#4f3f2f"/>
+            <circle id="chip" cx="42" cy="43" r="0.5" stroke="#4f3f2f" fill="#4f3f2f"/>
+            <circle id="chip" cx="49" cy="49" r="0.5" stroke="#4f3f2f" fill="#4f3f2f"/>
+            <circle id="chip" cx="48" cy="42" r="0.5" stroke="#4f3f2f" fill="#4f3f2f"/>
+            <circle id="chip" cx="41" cy="49" r="0.5" stroke="#4f3f2f" fill="#4f3f2f"/>
+            <circle id="cookie" cx="45" cy="45" r="10" stroke="#806a41" fill="#bda45e"  fill-opacity="0.0"/>
+        </svg>
+    </div>
+</div>
+
+    <script>
+        let gameBoard = document.querySelector("#cookie")
+        gameBoard.addEventListener('click', cookieClick)
+        async function cookieClick() {
+            document.querySelector("#cookie-wrapper").classList.toggle('bounce');
+            console.log("clicking")
+            const response = await fetch('http://127.0.0.1/click_up')
+            const data = await response.json()
+            let counter_span = document.getElementById("clicks")
+            counter_span.innerHTML = "You have clicked " + data.clicks + " times!";
+        }
+    </script>
+</body>
+</html>
